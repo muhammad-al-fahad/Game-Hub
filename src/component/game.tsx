@@ -1,38 +1,16 @@
-import {useEffect, useState} from 'react'
-import apiClient from '../services/api-client'
-
-interface GameProps {
-    id: number
-    name: string
-}
-
-interface GameListProps {
-    count: number,
-    results: GameProps[]
-}
+import useGame from "../hooks/useGame"
+import Card from "./card"
 
 const Game = () => {
-    const [games, setGames] = useState<GameProps[]>([])
-    const [error, setError] = useState('')
+    const { error, games } = useGame()
 
-    useEffect(() => {
-        apiClient
-            .get<GameListProps>('/xgames')
-            .then((res) => {
-                setGames(res.data.results)
-            })
-            .catch((err) => {
-                setError(err.message)
-            })
-    }, [])
-
-    if(error) return <div className='w-full h-full text-2xl font-bold text-center text-red-600'>{error}</div>
+    if(error) return <div className='w-full h-full text-2xl font-bold text-center text-red-600 dark:text-white'>{error}</div>
     return (
         <main className='flex items-start justify-center w-full h-full py-4'>
-            <ul className='grid justify-start w-full grid-cols-3 px-8'>
+            <ul className='grid justify-start w-full grid-cols-1 gap-8 px-4 sm:px-2 md:px-8 sm:grid-cols-2 md:grid-cols-3'>
                 {
                     games.map((game) => {
-                        return <li key={game.id} className='text-lg font-semibold text-start'>{game.name}</li>
+                        return <Card key={game.id} game={game} platforms={game.parent_platforms} />
                     })
                 }
             </ul>

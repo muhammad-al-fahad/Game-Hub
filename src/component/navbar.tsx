@@ -41,8 +41,8 @@ const Navbar = () => {
           </div>
           {
             theme === 'light'
-              ? <FaSun className='text-3xl text-black' onClick={handleTheme}/>
-              : <FaMoon className='text-3xl dark:text-white' onClick={handleTheme}/>
+              ? <FaSun className='text-3xl text-cyan-500' onClick={handleTheme}/>
+              : <FaMoon className='text-3xl dark:text-cyan-500' onClick={handleTheme}/>
           }
         </div>
     </nav>
