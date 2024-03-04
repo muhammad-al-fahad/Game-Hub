@@ -2,7 +2,8 @@ import { FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid } from 'r
 import { SiNintendo } from 'react-icons/si';
 import { MdPhoneIphone } from 'react-icons/md';
 import { BsGlobe } from 'react-icons/bs';
-import { PlatformProps, GameProps } from '../modal/FetchGameResponse';
+import { PlatformProps, GameProps } from '../modal/FetchResponse';
+import optimizedImage from '../services/optimized-image';
 
 interface Props {
     platforms: {platform: PlatformProps}[],
@@ -25,19 +26,14 @@ const Card = ({ platforms, game }: Props) => {
     const color = game.metacritic > 90 ? 'text-green-300/95 bg-green-300/20' : game.metacritic > 85 ? 'text-yellow-300/95 bg-yellow-300/20' : 'text-red-300/95 bg-red-300/20'
 
   return (
-    <div className="overflow-hidden rounded shadow-lg max-w-max dark:bg-white bg-slate-800">
+    <div className="overflow-hidden rounded-lg shadow-lg max-w-max dark:bg-white bg-slate-800">
       <img
         className="w-full"
-        src={game.background_image}
+        src={optimizedImage(game.background_image, 600, 400)}
         alt="Sunset in the mountains"
       />
-      <div className="px-6 py-4">
-        <div className="mb-2 text-xl font-bold text-white dark:text-black">{game.name}</div>
-        {/* <p className="text-base text-gray-700">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
-        </p> */}
+      <div className="px-3 py-4">
+        <div className="mb-2 text-xl font-bold text-white text-start dark:text-black">{game.name}</div>
       </div>
       <div className="flex items-center justify-between py-4 pb-2">
         <div className="grid grid-cols-4 px-3">
