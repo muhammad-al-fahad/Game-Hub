@@ -18,6 +18,12 @@ export interface GenreProps {
     image_background: string
 }
 
+export interface GameQuery {
+  genre: GenreProps | null
+  platform: PlatformProps | null  
+  sortOrder: string
+}
+
 export default interface FetchResponse<T> {
     count: number
     results: T[]

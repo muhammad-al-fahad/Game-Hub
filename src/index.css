@@ -7,3 +7,15 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.scrollbar::-webkit-scrollbar {
+    width: 0.3rem;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgb(6 182 212);
+}

@@ -1,4 +1,7 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('tailwindcss').Config} */
+
 export default {
   darkMode: 'class',
   content: [
@@ -12,5 +15,9 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [ 
+    require('@tailwindcss/forms')({
+      strategy: 'className',
+    }),
+  ],
 }

@@ -1,14 +1,14 @@
 import useGame from "../hooks/useGame"
-import { GenreProps } from "../modal/FetchResponse"
+import { GameQuery } from "../modal/FetchResponse"
 import Card from "./card"
 import CardSkeleton from "./cardSkeleton"
 
 interface Props {
-    selectedGenre: GenreProps | null
+    gameQuery: GameQuery
 }
 
-const Game = ({ selectedGenre }: Props) => {
-    const { error, data, isLoading } = useGame(selectedGenre)
+const Game = ({ gameQuery }: Props) => {
+    const { error, data, isLoading } = useGame(gameQuery)
 
     const skeleton = [1, 2, 3, 4, 5, 6]
 

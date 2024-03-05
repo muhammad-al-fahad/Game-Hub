@@ -1,6 +1,15 @@
-import { GameProps, GenreProps } from '../modal/FetchResponse'
+import { GameProps, GameQuery } from '../modal/FetchResponse'
 import useData from "./useData"
 
-const useGame = (selectedGenre: GenreProps | null) => useData<GameProps>(`${selectedGenre ? 'games?genres=' + selectedGenre.id : '/games'}`, [selectedGenre?.id])
+const useGame = (gameQuery: GameQuery) => useData<GameProps>(
+    '/games',
+    {
+        params: {
+            genres: gameQuery.genre?.id,
+            platforms: gameQuery.platform?.id,
+            ordering: gameQuery.sortOrder,
+        }
+    },
+    [gameQuery])
 
 export default useGame 

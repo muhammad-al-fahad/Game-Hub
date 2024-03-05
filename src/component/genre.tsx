@@ -1,11 +1,12 @@
-import useGenre from "../hooks/useGenerics";
+import useGenre from "../hooks/useGenre";
 import { GenreProps } from "../modal/FetchResponse";
 
 interface Props {
-  setSelectedGenre: (genre: GenreProps) => void
+  setSelectedGenre: (genre: GenreProps) => void,
+  selectedGenre: GenreProps | null
 }
 
-const Genre = ({ setSelectedGenre }: Props) => {
+const Genre = ({ setSelectedGenre, selectedGenre }: Props) => {
   const { data, error, isLoading } = useGenre();
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -44,7 +45,7 @@ const Genre = ({ setSelectedGenre }: Props) => {
               return (
                 <li
                   key={genre.id}
-                  className="flex items-center justify-start space-x-4 cursor-pointer dark:text-white"
+                  className={`flex items-center justify-start space-x-4 cursor-pointer dark:text-white ps-2 ${genre.id === selectedGenre?.id ? 'border-s-4 border-cyan-500' : ''}`}
                   onClick={() => setSelectedGenre(genre)}
                 >
                   <img
@@ -52,7 +53,7 @@ const Genre = ({ setSelectedGenre }: Props) => {
                     alt=""
                     className="w-8 h-8 rounded-lg"
                   />
-                  <h3 className="text-lg">{genre.name}</h3>
+                  <h3 className={`text-lg ${genre.id === selectedGenre?.id && 'text-cyan-500 font-semibold'}`}>{genre.name}</h3>
                 </li>
               );
             })}
