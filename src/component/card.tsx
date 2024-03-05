@@ -1,4 +1,4 @@
-import { FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid } from 'react-icons/fa';
+import { FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid, FaStar } from 'react-icons/fa';
 import { SiNintendo } from 'react-icons/si';
 import { MdPhoneIphone } from 'react-icons/md';
 import { BsGlobe } from 'react-icons/bs';
@@ -23,7 +23,8 @@ const Card = ({ platforms, game }: Props) => {
         android: <FaAndroid />    
     }
 
-    const color = game.metacritic > 90 ? 'text-green-300/95 bg-green-300/20' : game.metacritic > 85 ? 'text-yellow-300/95 bg-yellow-300/20' : 'text-red-300/95 bg-red-300/20'
+    const color = game.metacritic > 90 ? 'text-green-400 bg-green-300/20' : game.metacritic > 85 ? 'text-yellow-400 bg-yellow-300/20' : 'text-red-400 bg-red-300/20'
+    const rating = game.rating_top > 7 ? 'text-green-500 bg-green-300/20' : game.rating_top > 4 ? 'text-yellow-500 bg-yellow-300/20' : 'text-red-500 bg-red-300/20'
 
   return (
     <div className="overflow-hidden rounded-lg shadow-lg max-w-max dark:bg-gray-700 bg-gray-50">
@@ -48,6 +49,12 @@ const Card = ({ platforms, game }: Props) => {
 
       <div className="px-3 pt-4 pb-2">
         <div className="mb-2 text-xl font-bold text-gray-700 text-start dark:text-gray-50">{game.name}</div>
+      </div>
+
+      <div className="flex items-center justify-start px-3 pb-2 space-x-2">
+        <span className='text-lg font-bold text-gray-700 -translate-y-[1.25px] dark:text-gray-50'>Rating:</span>
+        <p className={`px-3 py-2 text-lg font-semibold rounded-md ${rating}`}>{game.rating_top} <span className='text-gray-700 dark:text-gray-50'>/ 10</span></p>
+        <FaStar color='#facc15'/>
       </div>
     </div>
   );
