@@ -2,11 +2,11 @@ const CardSkeleton = () => {
   return (
     <div
       role="status"
-      className="max-w-[377.875] min-h-max overflow-hidden rounded-lg shadow-lg animate-pulse dark:bg-white bg-slate-800"
+      className="max-w-[377.875] min-h-max overflow-hidden rounded-lg shadow-lg animate-pulse dark:bg-gray-700 bg-gray-50"
     >
-      <div className="flex items-center justify-center w-full h-64 bg-gray-300 dark:bg-gray-700">
+      <div className="flex items-center justify-center w-full h-64 bg-gray-100 dark:bg-gray-600">
         <svg
-          className="object-cover object-center text-gray-200 max-w-24 max-h-24 dark:text-gray-600"
+          className="object-cover object-center text-gray-400 dark:text-gray-100 max-w-24 max-h-24"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -16,11 +16,11 @@ const CardSkeleton = () => {
         </svg>
       </div>
       <div className="w-full px-2 py-4">
-        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-48 mb-2.5"></div>
+        <div className="h-2 bg-gray-400 rounded-full max-w-48 mb-2.5"></div>
         <br />
-        <div className="h-1.5 bg-gray-200 rounded-full dark:bg-gray-700 max-w-full mb-2.5"></div>
-        <div className="h-1.5 bg-gray-200 rounded-full dark:bg-gray-700 max-w-full mb-2.5"></div>
-        <div className="h-1.5 bg-gray-200 rounded-full dark:bg-gray-700 max-w-72"></div>
+        <div className="h-1.5 bg-gray-400 rounded-full max-w-full mb-2.5"></div>
+        <div className="h-1.5 bg-gray-400 rounded-full max-w-full mb-2.5"></div>
+        <div className="h-1.5 bg-gray-400 rounded-full max-w-72"></div>
       </div>
     </div>
   );

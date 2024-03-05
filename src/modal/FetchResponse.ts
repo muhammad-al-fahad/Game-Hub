@@ -22,6 +22,7 @@ export interface GameQuery {
   genre: GenreProps | null
   platform: PlatformProps | null  
   sortOrder: string
+  searchText: string
 }
 
 export default interface FetchResponse<T> {

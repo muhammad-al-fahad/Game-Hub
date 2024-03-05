@@ -19,3 +19,9 @@
 .scrollbar::-webkit-scrollbar-thumb {
     background-color: rgb(6 182 212);
 }
+
+@media screen and (max-width: 425px){
+    #default-search, #search-icon {
+        display: none;
+    }
+}
