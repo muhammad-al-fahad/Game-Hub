@@ -1,16 +1,17 @@
-import { GameProps, GameQuery } from '../modal/FetchResponse'
-import useData from "./useData"
+import { useQuery } from '@tanstack/react-query'
+import FetchResponse, { GameProps, GameQuery } from '../modal/FetchResponse'
+import apiClient from '../services/api-client'
 
-const useGame = (gameQuery: GameQuery) => useData<GameProps>(
-    '/games',
-    {
+const useGame = (gameQuery: GameQuery) => useQuery<FetchResponse<GameProps>, Error>({
+    queryKey: ['games', gameQuery],
+    queryFn: () => apiClient.get<FetchResponse<GameProps>>('/games', {
         params: {
             genres: gameQuery.genre?.id,
-            platforms: gameQuery.platform?.id,
+            parent_platforms: gameQuery.platform?.id,
             ordering: gameQuery.sortOrder,
             search: gameQuery.searchText
         }
-    },
-    [gameQuery])
+    }).then(res => res.data)
+})
 
 export default useGame 

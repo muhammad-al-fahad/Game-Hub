@@ -50,7 +50,7 @@ const PlatformSelector = ({ setSelectedPlatform, selectedPlatform }: Props) => {
             aria-labelledby="listbox-label"
             aria-activedescendant="listbox-option-3"
           >
-            {data.map((platform) => {
+            {data?.results.map((platform) => {
               return (
                 <li
                   key={platform.id}

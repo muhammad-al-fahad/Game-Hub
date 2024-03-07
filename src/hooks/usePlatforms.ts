@@ -1,6 +1,11 @@
-import { PlatformProps } from '../modal/FetchResponse'
-import useData from "./useData"
+import { useQuery } from '@tanstack/react-query'
+import FetchResponse, { PlatformProps } from '../modal/FetchResponse'
+import apiClient from '../services/api-client'
 
-const useGenre = () => useData<PlatformProps>('/platforms/lists/parents')
+const usePlatform = () => useQuery({
+    queryKey: ['platforms'],
+    queryFn: () => apiClient.get<FetchResponse<PlatformProps>>('/platforms/lists/parents').then(res => res.data),
+    staleTime: 24 * 60 * 60 * 1000, //1d
+})
 
-export default useGenre 
+export default usePlatform

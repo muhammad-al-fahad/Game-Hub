@@ -13,7 +13,7 @@ const Genre = ({ setSelectedGenre, selectedGenre }: Props) => {
   if (error)
     return (
       <div className="w-full h-full text-2xl font-bold text-center text-red-600 dark:text-white">
-        {error}
+        {error.message}
       </div>
     );
   return (
@@ -44,7 +44,7 @@ const Genre = ({ setSelectedGenre, selectedGenre }: Props) => {
                 </li>
               );
             })
-          : data.map((genre) => {
+          : data?.results.map((genre) => {
               return (
                 <li
                   key={genre.id}
