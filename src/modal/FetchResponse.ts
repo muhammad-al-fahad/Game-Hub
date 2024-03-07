@@ -20,8 +20,8 @@ export interface GenreProps {
 }
 
 export interface GameQuery {
-  genre: GenreProps | null
-  platform: PlatformProps | null  
+  genreId?: number
+  platformId?: number 
   sortOrder: string
   searchText: string
 }

@@ -4,12 +4,14 @@ import { PlatformProps } from "../modal/FetchResponse";
 
 interface Props {
   setSelectedPlatform: (platform: PlatformProps) => void;
-  selectedPlatform: PlatformProps | null;
+  selectedPlatformId?: number;
 }
 
-const PlatformSelector = ({ setSelectedPlatform, selectedPlatform }: Props) => {
+const PlatformSelector = ({ setSelectedPlatform, selectedPlatformId }: Props) => {
   const { data, error } = usePlatforms();
   const [toggleMenu, setToggleMenu] = useState(false);
+
+  const selectedPlatform = data?.results.find(g => g.id === selectedPlatformId)
 
   if(error) return null 
   return (
