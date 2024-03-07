@@ -1,21 +1,19 @@
 import { useState } from 'react'
+
+import { GameQuery } from './modal/FetchResponse';
+import useGenre from './hooks/useGenre';
+import usePlatform from './hooks/usePlatform';
+
 import Navbar from "./component/navbar";
 import Game from "./component/game";
 import Genre from "./component/genre";
-import { GameQuery } from './modal/FetchResponse';
 import PlatformSelector from './component/platformSelector';
 import SortSelector from './component/sortSelector';
-import useGenre from './hooks/useGenre';
-import usePlatform from './hooks/usePlatforms';
 
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery)
-
-  const { data: genres } = useGenre()
-  const genre = genres?.results.find(g => g.id === gameQuery.genreId)
-
-  const { data: platforms } = usePlatform()
-  const platform = platforms?.results.find(g => g.id === gameQuery.platformId)
+  const genre = useGenre(gameQuery.genreId)
+  const platform = usePlatform(gameQuery.platformId)
 
   const heading = `${platform?.name || ''} ${genre?.name || ''} Games`
   

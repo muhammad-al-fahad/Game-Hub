@@ -1,13 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
-import { GenreProps } from '../modal/FetchResponse'
-import APIClient from '../services/api-client'
+import usePlatform from "./usePlatforms"
 
-const apiClient = new APIClient<GenreProps>('/genres')
-
-const useGenre = () => useQuery({
-    queryKey: ['genre'],
-    queryFn: apiClient.getAll,
-    staleTime: 24 * 60 * 60 * 1000, //1d
-})
+const useGenre = (id?: number) => {
+    const { data: platforms } = usePlatform()
+    return platforms?.results.find(g => g.id === id)
+}
 
 export default useGenre

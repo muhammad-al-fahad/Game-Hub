@@ -1,4 +1,4 @@
-import useGenre from "../hooks/useGenre";
+import useGenre from "../hooks/useGenres";
 import { GenreProps } from "../modal/FetchResponse";
 
 interface Props {
