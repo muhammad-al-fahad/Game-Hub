@@ -28,5 +28,6 @@ export interface GameQuery {
 
 export default interface FetchResponse<T> {
     count: number
+    next: number | null
     results: T[]
 }
