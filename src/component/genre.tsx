@@ -1,12 +1,11 @@
 import useGenre from "../hooks/useGenres";
-import { GenreProps } from "../modal/FetchResponse";
+import { useAppDispatch, useAppSelector } from '../hooks'
+import { setGameQuery } from "../store/reducer";
 
-interface Props {
-  setSelectedGenre: (genre: GenreProps) => void,
-  selectedGenreId?: number
-}
+const Genre = () => {
+  const dispatch = useAppDispatch();
+  const { gameQuery } = useAppSelector((state) => state);
 
-const Genre = ({ setSelectedGenre, selectedGenreId }: Props) => {
   const { data, error, isLoading } = useGenre();
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -48,15 +47,15 @@ const Genre = ({ setSelectedGenre, selectedGenreId }: Props) => {
               return (
                 <li
                   key={genre.id}
-                  className={`flex items-center justify-start space-x-4 cursor-pointer dark:text-white object-cover ${genre.id === selectedGenreId ? 'border-s-4 border-cyan-500 ps-2' : ''}`}
-                  onClick={() => setSelectedGenre(genre)}
+                  className={`flex items-center justify-start space-x-4 cursor-pointer dark:text-white object-cover ${genre.id === gameQuery.genreId ? 'border-s-4 border-cyan-500 ps-2' : ''}`}
+                  onClick={() => dispatch(setGameQuery({ type: 'GENRE', genreId: genre.id }))}
                 >
                   <img
                     src={genre.image_background}
                     alt=""
                     className="w-8 h-8 rounded-lg"
                   />
-                  <h3 className={`text-lg ${genre.id === selectedGenreId && 'text-cyan-500 font-semibold'}`}>{genre.name}</h3>
+                  <h3 className={`text-lg ${genre.id === gameQuery.genreId && 'text-cyan-500 font-semibold'}`}>{genre.name}</h3>
                 </li>
               );
             })}

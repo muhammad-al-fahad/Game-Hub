@@ -1,12 +1,11 @@
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { setGameQuery } from '../store/reducer'
 
+const SortSelector = () => {
+  const dispatch = useAppDispatch()
+  const { gameQuery } = useAppSelector(state => state)
 
-interface Props {
-  setSelectedSort: (sort: string) => void;
-  selectedSort: string | null;
-}
-
-const SortSelector = ({ setSelectedSort, selectedSort }: Props) => {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const sortOrder = [
@@ -18,14 +17,14 @@ const SortSelector = ({ setSelectedSort, selectedSort }: Props) => {
     { value: "-rating", label: "Average Rating" },
   ]
 
-  const currentSortName = sortOrder.find(s => s.value === selectedSort)
+  const currentSortName = sortOrder.find(s => s.value === gameQuery.sortOrder)
 
   return (
     <div>
       <div className="relative w-48 mt-2 ms-4">
         <button
           type="button"
-          className="relative w-full cursor-default rounded-md bg-gray-50 text-gray-700 dark:bg-gray-700 py-1.5 pl-3 pr-10 text-left dark:text-gray-50 shadow-sm ring-1 ring-inset ring-gray-50 dark:ring-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+          className="relative w-full cursor-pointer rounded-md bg-gray-50 text-gray-700 dark:bg-gray-700 py-1.5 pl-3 pr-10 text-left dark:text-gray-50 shadow-sm ring-1 ring-inset ring-gray-50 dark:ring-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
           aria-haspopup="listbox"
           aria-expanded="true"
           aria-labelledby="listbox-label"
@@ -66,7 +65,7 @@ const SortSelector = ({ setSelectedSort, selectedSort }: Props) => {
                   id="listbox-option-0"
                   role="option"
                   onClick={() => {
-                    setSelectedSort(sort.value)
+                    dispatch(setGameQuery({ type: 'SORTING', sortOrder: sort.value }))
                     setToggleMenu(!toggleMenu)
                 }}
                 >

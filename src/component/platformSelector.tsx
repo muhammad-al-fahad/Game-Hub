@@ -1,17 +1,16 @@
 import { useState } from "react";
 import usePlatforms from "../hooks/usePlatforms";
-import { PlatformProps } from "../modal/FetchResponse";
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { setGameQuery } from '../store/reducer'
 
-interface Props {
-  setSelectedPlatform: (platform: PlatformProps) => void;
-  selectedPlatformId?: number;
-}
+const PlatformSelector = () => {
+  const dispatch = useAppDispatch()
+  const { gameQuery } = useAppSelector((state) => state)
 
-const PlatformSelector = ({ setSelectedPlatform, selectedPlatformId }: Props) => {
   const { data, error } = usePlatforms();
   const [toggleMenu, setToggleMenu] = useState(false);
 
-  const selectedPlatform = data?.results.find(g => g.id === selectedPlatformId)
+  const selectedPlatform = data?.results.find(g => g.id === gameQuery.platformId)
 
   if(error) return null 
   return (
@@ -19,7 +18,7 @@ const PlatformSelector = ({ setSelectedPlatform, selectedPlatformId }: Props) =>
       <div className="relative w-48 mt-2 ms-4 md:ms-8">
         <button
           type="button"
-          className="relative w-full cursor-default rounded-md bg-gray-50 text-gray-700 dark:bg-gray-700 py-1.5 pl-3 pr-10 text-left dark:text-gray-50 shadow-sm ring-1 ring-inset ring-gray-50 dark:ring-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+          className="relative w-full cursor-pointer rounded-md bg-gray-50 text-gray-700 dark:bg-gray-700 py-1.5 pl-3 pr-10 text-left dark:text-gray-50 shadow-sm ring-1 ring-inset ring-gray-50 dark:ring-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
           aria-haspopup="listbox"
           aria-expanded="true"
           aria-labelledby="listbox-label"
@@ -60,7 +59,7 @@ const PlatformSelector = ({ setSelectedPlatform, selectedPlatformId }: Props) =>
                   id="listbox-option-0"
                   role="option"
                   onClick={() => {
-                    setSelectedPlatform(platform)
+                    dispatch(setGameQuery({ type: 'PLATFORM', platformId: platform.id }))
                     setToggleMenu(!toggleMenu)
                 }}
                 >

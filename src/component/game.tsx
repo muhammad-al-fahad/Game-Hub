@@ -1,17 +1,13 @@
 import React from "react";
 import useGame from "../hooks/useGame";
-import { GameQuery } from "../modal/FetchResponse";
 import Card from "./card";
 import CardSkeleton from "./cardSkeleton";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useAppSelector } from '../hooks'
 
-interface Props {
-  gameQuery: GameQuery;
-}
-
-const Game = ({ gameQuery }: Props) => {
-  const { error, data, isLoading, fetchNextPage, hasNextPage } =
-    useGame(gameQuery);
+const Game = () => {
+  const { gameQuery } = useAppSelector((state) => state)
+  const { error, data, isLoading, fetchNextPage, hasNextPage } = useGame(gameQuery);
 
   const skeleton = [1, 2, 3, 4, 5, 6];
 

@@ -1,12 +1,12 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import Logo from "../assets/Logo.png";
 import { FaMoon, FaSun } from "react-icons/fa6";
+import { useAppDispatch } from '../hooks'
+import { setGameQuery } from '../store/reducer'
 
-interface Props {
-  onSearch: (searchText: string) => void
-}
+const Navbar = () => {
+  const dispatch = useAppDispatch()
 
-const Navbar = ({ onSearch }: Props) => {
   const [theme, setTheme] = useState("light");
   const ref = useRef<HTMLInputElement>(null)
 
@@ -41,14 +41,14 @@ const Navbar = ({ onSearch }: Props) => {
     event.preventDefault()
 
     if(ref.current) {
-      onSearch(ref.current.value)
+      dispatch(setGameQuery({ type: 'SEARCH', searchText: ref.current.value }))
       ref.current.value = ''
     }
   }
   return (
     <nav className="px-2 max-w-screen sm:px-6 lg:px-8">
       <div className="flex items-center justify-between h-16">
-        <div className="flex space-x-6">
+        <div className="flex space-x-6 cursor-pointer">
           <img src={Logo} alt="" className="" width={50} height={50} />
           <h3 className="text-2xl text-black dark:text-white">Navbar</h3>
         </div>
@@ -90,10 +90,10 @@ const Navbar = ({ onSearch }: Props) => {
         </form>
 
         {theme === "light" ? (
-          <FaSun className="text-3xl text-cyan-500" onClick={handleTheme} />
+          <FaSun className="text-3xl cursor-pointer text-cyan-500" onClick={handleTheme} />
         ) : (
           <FaMoon
-            className="text-3xl dark:text-cyan-500"
+            className="text-3xl cursor-pointer dark:text-cyan-500"
             onClick={handleTheme}
           />
         )}

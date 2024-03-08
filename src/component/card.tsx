@@ -29,7 +29,7 @@ const Card = ({ platforms, game }: Props) => {
   return (
     <div className="overflow-hidden rounded-lg shadow-lg max-w-max dark:bg-gray-700 bg-gray-50">
       <img
-        className="w-full"
+        className="w-full cursor-pointer"
         src={optimizedImage(game.background_image, 600, 400)}
         alt="Sunset in the mountains"
       />
