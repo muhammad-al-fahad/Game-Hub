@@ -1,11 +1,10 @@
-import useGenre from './hooks/useGenre';
-import usePlatform from './hooks/usePlatform';
-import Navbar from "./component/navbar";
-import Game from "./component/game";
-import Genre from "./component/genre";
-import PlatformSelector from './component/platformSelector';
-import SortSelector from './component/sortSelector';
-import { useAppSelector } from './hooks';
+import useGenre from '../hooks/useGenre';
+import usePlatform from '../hooks/usePlatform'
+import Game from "../component/game";
+import Genre from "../component/genre";
+import PlatformSelector from '../component/platformSelector';
+import SortSelector from '../component/sortSelector';
+import { useAppSelector } from '../hooks';
 
 function App() {
   const { gameQuery } = useAppSelector((state) => state)
@@ -16,10 +15,6 @@ function App() {
   const heading = `${platform?.name || ''} ${genre?.name || ''} Games`
   
   return (
-    <>
-    <div className="grid grid-cols-1">
-      <Navbar/>
-    </div>
     <div className="grid grid-cols-1 lg:grid-cols-5">
       <div className="hidden text-start lg:block">
         <Genre/>
@@ -33,7 +28,6 @@ function App() {
         <Game/>
       </div>
     </div>
-    </>
   );
 }
 

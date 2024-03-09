@@ -4,6 +4,7 @@ import { MdPhoneIphone } from 'react-icons/md';
 import { BsGlobe } from 'react-icons/bs';
 import { PlatformProps, GameProps } from '../modal/FetchResponse';
 import optimizedImage from '../services/optimized-image';
+import { Link } from 'react-router-dom';
 
 interface Props {
     platforms: {platform: PlatformProps}[],
@@ -28,11 +29,13 @@ const Card = ({ platforms, game }: Props) => {
 
   return (
     <div className="overflow-hidden rounded-lg shadow-lg max-w-max dark:bg-gray-700 bg-gray-50">
-      <img
-        className="w-full cursor-pointer"
-        src={optimizedImage(game.background_image, 600, 400)}
-        alt="Sunset in the mountains"
-      />
+      <Link to={`/games/${game.slug}`} className='no-underline'>
+        <img
+          className="w-full cursor-pointer"
+          src={optimizedImage(game.background_image, 600, 400)}
+          alt="Sunset in the mountains"
+        />
+      </Link>
       
       <div className="flex items-center justify-between py-4 pb-2">
         <div className="grid grid-cols-4 px-3">

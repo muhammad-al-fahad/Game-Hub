@@ -11,7 +11,7 @@ const Genre = () => {
 
   if (error)
     return (
-      <div className="w-full h-full text-2xl font-bold text-center text-red-600 dark:text-white">
+      <div className="w-full h-full my-4 text-2xl font-bold text-center text-red-600 dark:text-white">
         {error.message}
       </div>
     );

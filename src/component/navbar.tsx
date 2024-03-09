@@ -3,9 +3,11 @@ import Logo from "../assets/Logo.png";
 import { FaMoon, FaSun } from "react-icons/fa6";
 import { useAppDispatch } from '../hooks'
 import { setGameQuery } from '../store/reducer'
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const [theme, setTheme] = useState("light");
   const ref = useRef<HTMLInputElement>(null)
@@ -43,15 +45,16 @@ const Navbar = () => {
     if(ref.current) {
       dispatch(setGameQuery({ type: 'SEARCH', searchText: ref.current.value }))
       ref.current.value = ''
+      navigate('/')
     }
   }
   return (
     <nav className="px-2 max-w-screen sm:px-6 lg:px-8">
       <div className="flex items-center justify-between h-16">
-        <div className="flex space-x-6 cursor-pointer">
+        <Link to="/" className="flex space-x-6 no-underline cursor-pointer">
           <img src={Logo} alt="" className="" width={50} height={50} />
           <h3 className="text-2xl text-black dark:text-white">Navbar</h3>
-        </div>
+        </Link> 
 
         <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
           <label
