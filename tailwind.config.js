@@ -11,7 +11,9 @@ export default {
   theme: {
     extend: {
       screens: {
-        'sm': '475px',
+        'sm': '475px',      
+        'xs': '350px',
+        '2xs': '280px'
       }
     },
   },

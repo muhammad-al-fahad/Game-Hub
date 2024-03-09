@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import Game from './reducer'
+import showGenre from './reducer/toggle'
 
 const store = configureStore({
     reducer: {
+        showNav: showGenre,
         gameQuery: Game
     }
 })

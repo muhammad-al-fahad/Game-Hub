@@ -10,17 +10,17 @@ const GameDetail = () => {
 
     const [expanded, setExpanded] = useState<boolean>(false)
 
-    if(isLoading) return <div className='flex items-center justify-center w-full min-h-[90dvh]'>
+    if(isLoading) return <div className='flex items-center justify-center w-full min-h-dvh'>
         <span className='p-4 border-4 rounded-full border-t-gray-100 dark:border-t-gray-600 border-cyan-500 animate-spin'></span>
     </div>
-    else if(error || !game) return <div className="w-full h-full my-4 text-2xl font-bold text-center text-gray-700 dark:text-gray-50">{error?.message}</div>
+    else if(error || !game) return <div className="w-full h-full my-4 mt-24 text-2xl font-bold text-center text-gray-700 dark:text-gray-50">{error?.message}</div>
     
     const textLimit = expanded ? game.description_raw : game.description_raw.slice(0, 300) + '...';
     const color = game.metacritic ? game.metacritic > 90 ? 'text-green-400 bg-green-300/20' : game.metacritic > 85 ? 'text-yellow-400 bg-yellow-300/20' : 'text-red-400 bg-red-300/20' : 'text-gray-700 dark:text-gray-50  bg-gray-500/20 dark:bg-gray-300/20';
 
     return (
         <>
-            <h1 className='my-8 text-2xl font-bold text-center text-gray-700 md:text-6xl dark:text-gray-50 text-nowrap sm:text-4xl'>{game.name.toUpperCase()}</h1>
+            <h1 className='my-8 mt-24 text-2xl font-bold text-center text-gray-700 md:text-6xl dark:text-gray-50 text-wrap sm:text-4xl'>{game.name.toUpperCase()}</h1>
             <div className='grid grid-cols-1 gap-8 px-4 mb-4 md:gap-0 md:space-x-4 md:grid-cols-8 lg:grid-cols-12'>
                 <div className='flex flex-col items-start justify-start w-full space-y-4 md:col-span-4 lg:col-span-7'>
                     <div className='flex flex-col items-start justify-start w-full space-y-2'>

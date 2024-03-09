@@ -1,11 +1,14 @@
 import useGenre from "../hooks/useGenres";
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { setGameQuery } from "../store/reducer";
+import { setToggle } from "../store/reducer/toggle"
+import { useNavigate } from "react-router-dom";
 
 const Genre = () => {
   const dispatch = useAppDispatch();
   const { gameQuery } = useAppSelector((state) => state);
 
+  const navigate = useNavigate();
   const { data, error, isLoading } = useGenre();
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -48,7 +51,11 @@ const Genre = () => {
                 <li
                   key={genre.id}
                   className={`flex items-center justify-start space-x-4 cursor-pointer dark:text-white object-cover ${genre.id === gameQuery.genreId ? 'border-s-4 border-cyan-500 ps-2' : ''}`}
-                  onClick={() => dispatch(setGameQuery({ type: 'GENRE', genreId: genre.id }))}
+                  onClick={() => {                   
+                    dispatch(setGameQuery({ type: 'GENRE', genreId: genre.id }))
+                    dispatch(setToggle({ type: 'TOGGLE', navMenu: false, navSearch: false }));
+                    navigate('/')
+                  }}
                 >
                   <img
                     src={genre.image_background}
