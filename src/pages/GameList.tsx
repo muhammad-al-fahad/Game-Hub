@@ -16,7 +16,7 @@ function App() {
   
   return (
     <div className="grid grid-cols-1 mt-24 lg:grid-cols-5">
-      <div className={`${showNav.menu ? 'translate-x-0 transition-transform duration-500 ease-in-out' : '-translate-x-full transition-transform duration-500 ease-in-out lg:translate-x-0'} fixed top-16 left-0 z-10 overflow-auto w-full xs:w-fit max-h-dvh bg-white dark:bg-slate-800 drop-shadow-md lg:drop-shadow-none text-start lg:block lg:relative lg:z-0 lg:overflow-visible lg:max-h-full lg:top-0`}>
+      <div className={`${showNav.menu ? 'translate-x-0 transition-transform duration-500 ease-in-out' : '-translate-x-full transition-transform duration-500 ease-in-out lg:translate-x-0'} fixed top-16 left-0 z-10 overflow-auto w-full xs:w-fit max-h-[92.3dvh] bg-white dark:bg-slate-800 drop-shadow-md lg:drop-shadow-none text-start lg:block lg:relative lg:z-0 lg:overflow-visible lg:max-h-full lg:top-0`}>
         <Genre/>
       </div>
       <div className="col-span-1 text-start lg:col-span-4">
