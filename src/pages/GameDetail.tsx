@@ -16,7 +16,7 @@ const GameDetail = () => {
     else if(error || !game) return <div className="w-full h-full my-4 mt-24 text-2xl font-bold text-center text-gray-700 dark:text-gray-50">{error?.message}</div>
     
     const textLimit = expanded ? game.description_raw : game.description_raw.slice(0, 300) + '...';
-    const color = game.metacritic ? game.metacritic > 90 ? 'text-green-400 bg-green-300/20' : game.metacritic > 85 ? 'text-yellow-400 bg-yellow-300/20' : 'text-red-400 bg-red-300/20' : 'text-gray-700 dark:text-gray-50  bg-gray-500/20 dark:bg-gray-300/20';
+    const color = game.metacritic ? game.metacritic > 75 ? 'text-green-400 bg-green-300/20' : game.metacritic > 60 ? 'text-yellow-400 bg-yellow-300/20' : 'text-red-400 bg-red-300/20' : 'text-gray-700 dark:text-gray-50  bg-gray-500/20 dark:bg-gray-300/20';
 
     return (
         <>
@@ -56,7 +56,7 @@ const GameDetail = () => {
                         </div>
 
                         <div className='flex flex-col items-start justify-start w-full h-full space-y-2'>
-                            <h3 className='text-xl font-semibold text-gray-500 dark:text-gray-300'>Genres</h3>
+                            <h3 className='text-xl font-semibold text-gray-500 dark:text-gray-300'>Publishers</h3>
                             <div className='flex flex-col items-start justify-start w-full space-y-1 text-gray-700 dark:text-gray-50'>
                                 {
                                     game.publishers.map((publish) => {

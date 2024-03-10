@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { setGameQuery } from '../store/reducer'
+import { useOutsideEvent } from "../hooks/useOutsideEvent";
 
 const SortSelector = () => {
   const dispatch = useAppDispatch()
@@ -17,12 +18,22 @@ const SortSelector = () => {
     { value: "-rating", label: "Average Rating" },
   ]
 
+  const ref = useRef<HTMLUListElement>(null)
+  const parent_ref = useRef<HTMLButtonElement>(null)
+
   const currentSortName = sortOrder.find(s => s.value === gameQuery.sortOrder)
+
+  const handleClick = () => {
+    setToggleMenu(false);
+  }
+
+  useOutsideEvent<HTMLUListElement, HTMLButtonElement>(ref, handleClick, parent_ref)
 
   return (
     <div>
       <div className="relative w-48 mt-2 ms-4">
         <button
+          ref={parent_ref}
           type="button"
           className="relative w-full cursor-pointer rounded-md bg-gray-50 text-gray-700 dark:bg-gray-700 py-1.5 pl-3 pr-10 text-left dark:text-gray-50 shadow-sm ring-1 ring-inset ring-gray-50 dark:ring-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
           aria-haspopup="listbox"
@@ -52,7 +63,8 @@ const SortSelector = () => {
         </button>
         {toggleMenu && (
           <ul
-          className="absolute z-10 w-full py-1 mt-1 overflow-auto text-base rounded-md shadow-lg scroll-smooth bg-gray-50 dark:bg-gray-700 max-h-56 ring-1 ring-gray-50 dark:ring-gray-600 ring-opacity-5 focus:outline-none sm:text-sm scrollbar"
+            ref={ref}
+            className="absolute z-10 w-full py-1 mt-1 overflow-auto text-base rounded-md shadow-lg scroll-smooth bg-gray-50 dark:bg-gray-700 max-h-56 ring-1 ring-gray-50 dark:ring-gray-600 ring-opacity-5 focus:outline-none sm:text-sm scrollbar"
             role="listbox"
             aria-labelledby="listbox-label"
             aria-activedescendant="listbox-option-3"
